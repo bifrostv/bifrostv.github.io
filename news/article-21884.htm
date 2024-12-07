@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+
+<head>
+        <link rel="canonical" href="https://bifrostv.github.io/news/article-21884.htm" />
+    <meta charset="utf-8" />
+    <title>MVVM中的数据的刷新</title>
+        <meta name="description" content="在我们用MVVM框架做项目，在做到新增、删除等功能的时候，新增和删除成功后就会遇到一个问题，那就是数据的刷新。 怎样做到刷新的呢，其实刷新说白了就是重新查询下数据，只要我们调用一下查询的方法 就可以了" />
+        <link rel="icon" href="__ADDON__/img/bifrostv/favicon.ico" type="image/x-icon"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <link href="/assets/website/js/frontend/bifrostv/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/website/js/frontend/bifrostv/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- PAGE LEVEL PLUGIN STYLES -->
+    <link href="/assets/website/css/bifrostv/animate.css" rel="stylesheet">
+    <!-- THEME STYLES -->
+    <link href="/assets/website/css/bifrostv/layout.min.css" rel="stylesheet" type="text/css" />
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VEEJKF77CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VEEJKF77CS');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".header" data-page="detail">
+        <!--========== HEADER ==========-->
+    <header class="header navbar-fixed-top">
+        <!-- Navbar -->
+        <nav class="navbar" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="menu-container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="toggle-icon"></span>
+                    </button>
+                    <!-- Logo -->
+                    <div class="logo">
+                                                <a class="logo-wrap" href="/">
+                            <span>Bifrostv</span>
+                        </a>
+                                            </div>
+                    <!-- End Logo -->
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse nav-collapse">
+                    <div class="menu-container">
+                        <ul class="nav navbar-nav navbar-nav-right">
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-item-child nav-item-hover" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Navbar Collapse -->
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--========== END HEADER ==========-->
+    <!--========== SLIDER ==========-->
+    <div class="promo-block parallax-window" data-parallax="scroll" data-image-src="/assets/website/img/bifrostv/1920x1080/01.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-block-divider">
+                        <h1 class="promo-block-title">MVVM中的数据的刷新</h1>
+                        <p class="promo-block-text">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </div>
+    <!--========== SLIDER ==========-->
+    <!--========== PAGE LAYOUT ==========-->
+    <!-- About -->
+    <div id="about">
+        <div class="container content-lg">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>在我们用MVVM框架做项目，在做到新增、删除等功能的时候，新增和删除成功后就会遇到一个问题，那就是数据的刷新。<br /> 怎样做到刷新的呢，其实刷新说白了就是重新查询下数据，只要我们调用一下查询的方法<br /> 就可以了。<br /> 当我删除数据时，因为删除操作和数据查询操作可以在同一个ViewModel中，所以我们在写删除的时候可以直接调用查询方法。<br /> 这是我写的查询方法：</p> <pre><code class="prism language-csharp"><span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">GetAllCommodityBy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token class-name"><span class="token keyword">var</span></span> list <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">from</span> tbCommodity <span class="token keyword">in</span> myModel<span class="token punctuation">.</span>PW_Commodity                 <span class="token keyword">join</span> tbCommodtyType <span class="token keyword">in</span> myModel<span class="token punctuation">.</span>PW_CommodityType <span class="token keyword">on</span> tbCommodity<span class="token punctuation">.</span>CommodityTypeID equals tbCommodtyType<span class="token punctuation">.</span>CommodityTypeID                 <span class="token keyword">join</span> tbUnit <span class="token keyword">in</span> myModel<span class="token punctuation">.</span>PW_Unit <span class="token keyword">on</span> tbCommodity<span class="token punctuation">.</span>UnitID equals tbUnit<span class="token punctuation">.</span>UnitID                 <span class="token keyword">join</span> tbInventory <span class="token keyword">in</span> myModel<span class="token punctuation">.</span>PW_Inventory <span class="token keyword">on</span> tbCommodity<span class="token punctuation">.</span>InventoryID equals tbInventory<span class="token punctuation">.</span>InventoryID                 <span class="token keyword">select</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">CommodityVos</span>                 <span class="token punctuation">{<!-- --></span>                      CommodityID<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>CommodityID<span class="token punctuation">,</span>                      InventoryID<span class="token operator">=</span>tbInventory<span class="token punctuation">.</span>InventoryID<span class="token punctuation">,</span>                      CommodityNumber<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>CommodityNumber<span class="token punctuation">,</span>                      CommodityName<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>CommodityName<span class="token punctuation">,</span>                      CommodityTypeName<span class="token operator">=</span>tbCommodtyType<span class="token punctuation">.</span>CommodityTypeName<span class="token punctuation">,</span>                      UnitName<span class="token operator">=</span>tbUnit<span class="token punctuation">.</span>UnitName<span class="token punctuation">,</span>                      Specification<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>Specification<span class="token punctuation">,</span>                      InventoryFloor<span class="token operator">=</span>tbInventory<span class="token punctuation">.</span>InventoryFloor<span class="token punctuation">,</span>                      TheCurrentInventory<span class="token operator">=</span>tbInventory<span class="token punctuation">.</span>TheCurrentInventory<span class="token punctuation">,</span>                      WhetherGive<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>WhetherGive<span class="token punctuation">,</span>                      WhetherForbidden<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>WhetherForbidden<span class="token punctuation">,</span>                      TheDefaultSetting<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>TheDefaultSetting<span class="token punctuation">,</span>                      BarCode<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>BarCode<span class="token punctuation">,</span>                      Remark<span class="token operator">=</span>tbCommodity<span class="token punctuation">.</span>Remark     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     Commodity <span class="token operator">=</span> list<span class="token punctuation">;</span>             <span class="token punctuation">}</span> </code></pre> <p>这是删除后调用查询方法：</p> <pre><code class="prism language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>myModel<span class="token punctuation">.</span><span class="token function">SaveChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>  <span class="token punctuation">{<!-- --></span>       MessageBox<span class="token punctuation">.</span><span class="token function">Show</span><span class="token punctuation">(</span><span class="token string">"删除成功"</span><span class="token punctuation">,</span> <span class="token string">"系统提示"</span><span class="token punctuation">,</span> MessageBoxButton<span class="token punctuation">.</span>OK<span class="token punctuation">,</span> MessageBoxImage<span class="token punctuation">.</span>Information<span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token function">GetAllCommodityBy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token punctuation">}</span> </code></pre> <p>这是删除前的表格：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230110/8eeaae9eb291b3c3c5fc4ac00f925b83.jpg" alt="MVVM中的数据的刷新"><br /> 我选择最后一条数据删除<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230110/32f69dbdf7f94ead5f401c416f9329c4.jpg" alt="MVVM中的数据的刷新"><br /> 当删除成功后点击确定，表格就会刷新了：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230110/e141a19483a301d92d1a3d57e892bf27.jpg" alt="MVVM中的数据的刷新"><br /> 而新增操作和查询操作不在一个ViewModel怎么办呢，这时候我们就要用到委托了。<br /> 我们在新增的ViewModel中声明一个委托：</p> <pre><code class="prism language-csharp"><span class="token comment">//委托</span>  <span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">LodedSelect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token keyword">public</span> <span class="token keyword">event</span> <span class="token class-name">LodedSelect</span> LodedCommodity<span class="token punctuation">;</span> </code></pre> <p>然后我们在查询的ViewModel中把查询方法赋值给这个委托：</p> <pre><code class="prism language-csharp"><span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddCommodity</span><span class="token punctuation">(</span><span class="token class-name">Window</span> window<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                  <span class="token class-name">CommodityAdd</span> addOrCommodityWindow <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">CommodityAdd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token class-name"><span class="token keyword">var</span></span> Commoditys <span class="token operator">=</span> <span class="token punctuation">(</span>addOrCommodityWindow<span class="token punctuation">.</span>DataContext <span class="token keyword">as</span> 			   <span class="token class-name">CommodityAddViewModel</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      Commoditys<span class="token punctuation">.</span>LodedCommodity <span class="token operator">+=</span> GetAllCommodityBy<span class="token punctuation">;</span>      addOrCommodityWindow<span class="token punctuation">.</span><span class="token function">Show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span> </code></pre> <p>再然后我们在新增操作中用上这个委托就可以了。</p> <pre><code class="prism language-csharp"><span class="token keyword">if</span> <span class="token punctuation">(</span>myModel<span class="token punctuation">.</span><span class="token function">SaveChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>  <span class="token punctuation">{<!-- --></span>       MessageBox<span class="token punctuation">.</span><span class="token function">Show</span><span class="token punctuation">(</span><span class="token string">"新增成功"</span><span class="token punctuation">,</span> <span class="token string">"系统提示"</span><span class="token punctuation">,</span> MessageBoxButton<span class="token punctuation">.</span>OK<span class="token punctuation">,</span> MessageBoxImage<span class="token punctuation">.</span>Information<span class="token punctuation">)</span><span class="token punctuation">;</span>       window1<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       LodedCommodity<span class="token punctuation">?.</span><span class="token function">Invoke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span> </code></pre> <p>在我刚才删除数据的表格上新增一条“榴莲”的数据,<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230110/8862b5bad96a64da5bb6b0f4446eaccd.jpg" alt="MVVM中的数据的刷新"><br /> 当我点击“确定”后，新增页面关闭并表格刷新：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230110/591cb832f565510976377b4d41c9bb4c.jpg" alt="MVVM中的数据的刷新"></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-21440.htm">动物医院的英语短语有哪些（动物医院英语怎么写）</a></p>
+                                        <p>下一个：<a href="/news/article-21885.htm">宠物店挣钱吗?（宠物店到底挣不挣钱?）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-26-free-high-speed-nodes.htm" title="9月26日→19.9M/S|2024年最新免费节点BifrosTV订阅链接地址">9月26日→19.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21437.htm" title="HyBird App(混合应用)核心原理JSBridge">HyBird App(混合应用)核心原理JSBridge</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-free-high-speed-nodes.htm" title="11月18日→19M/S|2024年最新免费节点BifrosTV订阅链接地址">11月18日→19M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-high-speed-nodes.htm" title="11月15日→19.3M/S|2024年最新免费节点BifrosTV订阅链接地址">11月15日→19.3M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-1-node-share.htm" title="11月1日→20.9M/S|2024年最新免费节点BifrosTV订阅链接地址">11月1日→20.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-20-free-subscribe-node.htm" title="10月20日→20M/S|2024年最新免费节点BifrosTV订阅链接地址">10月20日→20M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-node-share.htm" title="11月5日→18.3M/S|2024年最新免费节点BifrosTV订阅链接地址">11月5日→18.3M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-4-node-share-links.htm" title="10月4日→22.9M/S|2024年最新免费节点BifrosTV订阅链接地址">10月4日→22.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-node-subscribe.htm" title="11月14日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址">11月14日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-15-free-subscribe-node.htm" title="10月15日→21.7M/S|2024年最新免费节点BifrosTV订阅链接地址">10月15日→21.7M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About -->
+    <!--========== END PAGE LAYOUT ==========-->
+        <!--========== FOOTER ==========-->
+    <footer class="footer">
+        <div class="content container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <p class="margin-b-0">
+                        <a href="/">BifrosTV机场节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </footer>
+    <!--========== END FOOTER ==========-->
+    <!-- Back To Top -->
+    <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+    <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- CORE PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.easing.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.smooth-scroll.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.wow.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.parallax.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.appear.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS -->
+    <script src="/assets/website/js/frontend/bifrostv/layout.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/progress-bar.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/masonry.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/wow.min.js" type="text/javascript"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+
+</html>
