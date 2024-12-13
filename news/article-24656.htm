@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+
+<head>
+        <link rel="canonical" href="https://bifrostv.github.io/news/article-24656.htm" />
+    <meta charset="utf-8" />
+    <title>netty系列之:netty中的核心MessageToByte编码器</title>
+        <meta name="description" content="目录  简介 MessageToByte框架简介 MessageToByteEncoder ByteToMessageDecoder ByteToMessageCodec 总结    之前的文章中，我" />
+        <link rel="icon" href="/assets/website/img/bifrostv/favicon.ico" type="image/x-icon"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <link href="/assets/website/js/frontend/bifrostv/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/website/js/frontend/bifrostv/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- PAGE LEVEL PLUGIN STYLES -->
+    <link href="/assets/website/css/bifrostv/animate.css" rel="stylesheet">
+    <!-- THEME STYLES -->
+    <link href="/assets/website/css/bifrostv/layout.min.css" rel="stylesheet" type="text/css" />
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VEEJKF77CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VEEJKF77CS');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".header" data-page="detail">
+        <!--========== HEADER ==========-->
+    <header class="header navbar-fixed-top">
+        <!-- Navbar -->
+        <nav class="navbar" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="menu-container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="toggle-icon"></span>
+                    </button>
+                    <!-- Logo -->
+                    <div class="logo">
+                                                <a class="logo-wrap" href="/">
+                            <span>Bifrostv</span>
+                        </a>
+                                            </div>
+                    <!-- End Logo -->
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse nav-collapse">
+                    <div class="menu-container">
+                        <ul class="nav navbar-nav navbar-nav-right">
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-item-child nav-item-hover" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Navbar Collapse -->
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--========== END HEADER ==========-->
+    <!--========== SLIDER ==========-->
+    <div class="promo-block parallax-window" data-parallax="scroll" data-image-src="/assets/website/img/bifrostv/1920x1080/01.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-block-divider">
+                        <h1 class="promo-block-title">netty系列之:netty中的核心MessageToByte编码器</h1>
+                        <p class="promo-block-text">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </div>
+    <!--========== SLIDER ==========-->
+    <!--========== PAGE LAYOUT ==========-->
+    <!-- About -->
+    <div id="about">
+        <div class="container content-lg">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#%E7%AE%80%E4%BB%8B" rel="nofollow">简介</a></li> <li><a href="#messagetobyte%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B" rel="nofollow">MessageToByte框架简介</a></li> <li><a href="#messagetobyteencoder" rel="nofollow">MessageToByteEncoder</a></li> <li><a href="#bytetomessagedecoder" rel="nofollow">ByteToMessageDecoder</a></li> <li><a href="#bytetomessagecodec" rel="nofollow">ByteToMessageCodec</a></li> <li><a href="#%E6%80%BB%E7%BB%93" rel="nofollow">总结</a></li> </ul> </div> </h1> <p>之前的文章中，我们讲解了netty中从一个message转换成为另外一个message的框架叫做MessageToMessage编码器。但是message to message只考虑了channel中消息在处理过程中的转换，但是我们知道channel中最终传输的数据一定是ByteBuf，所以我们还需要一个message和ByteBuf相互转换的框架，这个框架就叫做MessageToByte。</p> <p>注意，这里的byte指的是ByteBuf而不是byte这个字节类型。</p> </h1> <p>为了方便扩展和用户的自定义，netty封装了一套MessageToByte框架，这个框架中有三个核心的类，分别是MessageToByteEncoder,ByteToMessageDecoder和ByteToMessageCodec。</p> <p>我们分别看一下这三个核心类的定义：</p> <pre><code>public abstract class MessageToByteEncoder&lt;I&gt; extends ChannelOutboundHandlerAdapter</code></pre> <pre><code>public abstract class ByteToMessageDecoder extends ChannelInboundHandlerAdapter</code></pre> <pre><code>public abstract class ByteToMessageCodec&lt;I&gt; extends ChannelDuplexHandler</code></pre> <p>这三个类分别继承自ChannelOutboundHandlerAdapter，ChannelInboundHandlerAdapter和ChannelDuplexHandler，分别表示的是向channel中写消息，从channel中读消息和一个向channel中读写消息的双向操作。</p> <p>这三个类都是抽象类，接下来我们会详细分析这三个类的具体实现逻辑。</p> </h1> <p>先来看encoder，如果你对比MessageToByteEncoder和MessageToMessageEncoder的源码实现，可以发现他们有诸多相似之处。</p> <p>首先在MessageToByteEncoder中定义了一个用作消息类型匹配的TypeParameterMatcher。</p> <p>这个matcher用来匹配收到的消息类型，如果类型匹配则进行消息的转换操作，否则直接将消息写入channel中。</p> <p>和MessageToMessageEncoder不同的是，MessageToByteEncoder多了一个preferDirect字段，这个字段表示消息转换成为ByteBuf的时候是使用diret Buf还是heap Buf。</p> <p>这个字段的使用情况如下：</p> <pre><code>    protected ByteBuf allocateBuffer(ChannelHandlerContext ctx, @SuppressWarnings("unused") I msg,                                boolean preferDirect) throws Exception {         if (preferDirect) {             return ctx.alloc().ioBuffer();         } else {             return ctx.alloc().heapBuffer();         }     }</code></pre> <p>最后来看一下它的核心方法write:</p> <pre><code>    public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {         ByteBuf buf = null;         try {             if (acceptOutboundMessage(msg)) {                 @SuppressWarnings("unchecked")                 I cast = (I) msg;                 buf = allocateBuffer(ctx, cast, preferDirect);                 try {                     encode(ctx, cast, buf);                 } finally {                     ReferenceCountUtil.release(cast);                 }                  if (buf.isReadable()) {                     ctx.write(buf, promise);                 } else {                     buf.release();                     ctx.write(Unpooled.EMPTY_BUFFER, promise);                 }                 buf = null;             } else {                 ctx.write(msg, promise);             }         } catch (EncoderException e) {             throw e;         } catch (Throwable e) {             throw new EncoderException(e);         } finally {             if (buf != null) {                 buf.release();             }         }     }</code></pre> <p>上面我们已经提到了，write方法首先通过matcher来判断是否是要接受的消息类型，如果是的话就调用encode方法，将消息对象转换成为ByteBuf，如果不是，则直接将消息写入channel中。</p> <p>和MessageToMessageEncoder不同的是，encode方法需要传入一个ByteBuf对象，而不是CodecOutputList。</p> <p>MessageToByteEncoder有一个需要实现的抽象方法encode如下，</p> <pre><code>    protected abstract void encode(ChannelHandlerContext ctx, I msg, ByteBuf out) throws Exception;</code></pre> </h1> <p>ByteToMessageDecoder用来将channel中的ByteBuf消息转换成为特定的消息类型，其中Decoder中最重要的方法就是好channelRead方法,如下所示：</p> <pre><code>    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {         if (msg instanceof ByteBuf) {             CodecOutputList out = CodecOutputList.newInstance();             try {                 first = cumulation == null;                 cumulation = cumulator.cumulate(ctx.alloc(),                         first ? Unpooled.EMPTY_BUFFER : cumulation, (ByteBuf) msg);                 callDecode(ctx, cumulation, out);             } catch (DecoderException e) {                 throw e;             } catch (Exception e) {                 throw new DecoderException(e);             } finally {                 try {                     if (cumulation != null &amp;&amp; !cumulation.isReadable()) {                         numReads = 0;                         cumulation.release();                         cumulation = null;                     } else if (++numReads &gt;= discardAfterReads) {                         numReads = 0;                         discardSomeReadBytes();                     }                      int size = out.size();                     firedChannelRead |= out.insertSinceRecycled();                     fireChannelRead(ctx, out, size);                 } finally {                     out.recycle();                 }             }         } else {             ctx.fireChannelRead(msg);         }     }</code></pre> <p>channelRead接收要进行消息读取的Object对象，因为这里只接受ByteBuf消息，所以在方法内部调用了<code>msg instanceof ByteBuf</code> 来判断消息的类型，如果不是ByteBuf类型的消息则不进行消息的转换。</p> <p>输出的对象是CodecOutputList，在将ByteBuf转换成为CodecOutputList之后，调用fireChannelRead方法将out对象传递下去。</p> <p>这里的关键就是如何将接收到的ByteBuf转换成为CodecOutputList。</p> <p>转换的方法叫做callDecode，它接收一个叫做cumulation的参数，在上面的方法中，我们还看到一个和cumulation非常类似的名称叫做cumulator。那么他们两个有什么区别呢？</p> <p>在ByteToMessageDecoder中cumulation是一个ByteBuf对象，而Cumulator是一个接口，这个接口定义了一个cumulate方法：</p> <pre><code>    public interface Cumulator {         ByteBuf cumulate(ByteBufAllocator alloc, ByteBuf cumulation, ByteBuf in);     }</code></pre> <p>Cumulator用来将传入的ByteBuf合并成为一个新的ByteBuf。</p> <p>ByteToMessageDecoder中定义了两种Cumulator，分别是MERGE_CUMULATOR和COMPOSITE_CUMULATOR。</p> <p>MERGE_CUMULATOR是将传入的ByteBuf通过memory copy的方式拷贝到目标ByteBuf cumulation中。</p> <p>而COMPOSITE_CUMULATOR则是将ByteBuf添加到一个 CompositeByteBuf 的结构中，并不做memory copy，因为目标的结构比较复杂，所以速度会比直接进行memory copy要慢。</p> <p>用户要扩展的方法就是decode方法，用来将一个ByteBuf转换成为其他对象：</p> <pre><code>    protected abstract void decode(ChannelHandlerContext ctx, ByteBuf in, List&lt;Object&gt; out) throws Exception;</code></pre> </h1> <p>最后要介绍的类是ByteToMessageCodec，ByteToMessageCodec表示的是message和ByteBuf之间的互相转换，它里面的encoder和decoder分别就是上面讲到的MessageToByteEncoder和ByteToMessageDecoder。</p> <p>用户可以继承ByteToMessageCodec来同时实现encode和decode的功能，所以需要实现encode和decode这两个方法：</p> <pre><code>    protected abstract void encode(ChannelHandlerContext ctx, I msg, ByteBuf out) throws Exception;      protected abstract void decode(ChannelHandlerContext ctx, ByteBuf in, List&lt;Object&gt; out) throws Exception;</code></pre> <p>ByteToMessageCodec的本质就是封装了MessageToByteEncoder和ByteToMessageDecoder，然后实现了编码和解码的功能。</p> </h1> <p>如果想实现ByteBuf和用户自定义消息的直接转换，那么选择netty提供的上面三个编码器是一个很好的选择。</p> <blockquote> <p>本文已收录于<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://www.flydean.com/14-0-2-netty-codec-msg-to-bytebuf/"  target="_blank" rel="nofollow">http://www.flydean.com/14-0-2-netty-codec-msg-to-bytebuf/</a></p> <p>最通俗的解读，最深刻的干货，最简洁的教程，众多你不知道的小技巧等你来发现！</p> <p>欢迎关注我的公众号:「程序那些事」,懂技术，更懂你！</p> </blockquote> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-24655.htm">springdatajpa @ManyToOne、@OneToMany的使用</a></p>
+                                        <p>下一个：<a href="/news/article-25118.htm">宠物领养中心在哪里（宠物领养中心官网）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-free-high-speed-nodes.htm" title="10月9日→22M/S|2024年最新免费节点BifrosTV订阅链接地址">10月9日→22M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-1-free-node-subscribe-links.htm" title="10月1日→21M/S|2024年最新免费节点BifrosTV订阅链接地址">10月1日→21M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-17-node-share.htm" title="9月17日→22M/S|2024年最新免费节点BifrosTV订阅链接地址">9月17日→22M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-free-subscribe-node.htm" title="11月2日→18.2M/S|2024年最新免费节点BifrosTV订阅链接地址">11月2日→18.2M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22805.htm" title="VUE3开发问题总结(数据更新和页面显示问题)">VUE3开发问题总结(数据更新和页面显示问题)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-22-free-subscribe-node.htm" title="9月22日→21.6M/S|2024年最新免费节点BifrosTV订阅链接地址">9月22日→21.6M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-27-free-node-subscribe.htm" title="9月27日→19.6M/S|2024年最新免费节点BifrosTV订阅链接地址">9月27日→19.6M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-8-free-high-speed-nodes.htm" title="9月8日→21.9M/S|2024年最新免费节点BifrosTV订阅链接地址">9月8日→21.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-free-subscribe-node.htm" title="10月22日→22.8M/S|2024年最新免费节点BifrosTV订阅链接地址">10月22日→22.8M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-10-node-share.htm" title="9月10日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址">9月10日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About -->
+    <!--========== END PAGE LAYOUT ==========-->
+        <!--========== FOOTER ==========-->
+    <footer class="footer">
+        <div class="content container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <p class="margin-b-0">
+                        <a href="/">BifrosTV机场节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </footer>
+    <!--========== END FOOTER ==========-->
+    <!-- Back To Top -->
+    <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+    <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- CORE PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.easing.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.smooth-scroll.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.wow.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.parallax.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.appear.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS -->
+    <script src="/assets/website/js/frontend/bifrostv/layout.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/progress-bar.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/masonry.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/wow.min.js" type="text/javascript"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+
+</html>
