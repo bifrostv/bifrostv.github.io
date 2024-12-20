@@ -17,8 +17,7 @@
     <link href="/assets/website/css/bifrostv/animate.css" rel="stylesheet">
     <!-- THEME STYLES -->
     <link href="/assets/website/css/bifrostv/layout.min.css" rel="stylesheet" type="text/css" />
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEEJKF77CS"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -94,7 +93,8 @@
         <div class="container content-lg">
             <div class="row">
                 <div class="col-md-9">
-                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>业务中会涉及多张表的查询，jpa对应着表关系有 @OneToOne, @OneToMany,@ManyToOne及 @ManyToMany;<br /> 今天只是简单说一下@ManyToOne、@OneToMany<br /> 在进行配置之前要先进行一下前置工作：<br /> 第一步：首先确定两张表之间的关系。<br /> 如果关系确定错了，后面做的所有操作就都不可能正确。<br /> 第二步：在数据库中实现两张表的关系（只要有对应字段描述关联关系，即使不在从表中设置foreign key 也可以进行操作）<br /> 即：在主从表中设置外键关联关系<br /> 第三步：在实体类中描述出两个实体的关系</p> <p>第四步：配置出实体类和数据库表的关系映射（重点）<br /> @ManyToOne、@OneToMany 只需配置一个即可，看业务想要查看的数据情况而定。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/d8eb630e47db6d5360b7cfa3abe34954.jpg" alt="springdatajpa @ManyToOne、@OneToMany的使用"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/394c9904b2e2b2f2b6bda24d472f0e98.jpg" alt="springdatajpa @ManyToOne、@OneToMany的使用"></p> <p>@OneToMany:<br /> 作用：建立一对多的关系映射<br /> 属性：<br /> targetEntityClass：指定多的一方的类的字节码<br /> mappedBy：指定从表实体类中引用主表对象的名称。<br /> cascade：指定要使用的级联操作<br /> fetch：指定是否采用延迟加载<br /> orphanRemoval：是否使用孤儿删除</p> <p>@ManyToOne<br /> 作用：建立多对一的关系<br /> 属性：<br /> targetEntityClass：指定一的一方实体类字节码<br /> cascade：指定要使用的级联操作<br /> fetch：指定是否采用延迟加载<br /> optional：关联是否可选。如果设置为false，则必须始终存在非空关系。</p> <p>@JoinColumn<br /> 作用：用于定义主键字段和外键字段的对应关系。<br /> 属性：<br /> name：指定外键字段的名称<br /> referencedColumnName：指定引用主表的主键字段名称<br /> unique：是否唯一。默认值不唯一<br /> nullable：是否允许为空。默认值允许。<br /> insertable：是否允许插入。默认值允许。<br /> updatable：是否允许更新。默认值允许。<br /> columnDefinition：列的定义信息。<br /> name、referencedColumnName：所用的字段 不一定非要在表中设置foreign key，能够表明主从表的关联关系即可</p> </p></div> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>业务中会涉及多张表的查询，jpa对应着表关系有 @OneToOne, @OneToMany,@ManyToOne及 @ManyToMany;<br /> 今天只是简单说一下@ManyToOne、@OneToMany<br /> 在进行配置之前要先进行一下前置工作：<br /> 第一步：首先确定两张表之间的关系。<br /> 如果关系确定错了，后面做的所有操作就都不可能正确。<br /> 第二步：在数据库中实现两张表的关系（只要有对应字段描述关联关系，即使不在从表中设置foreign key 也可以进行操作）<br /> 即：在主从表中设置外键关联关系<br /> 第三步：在实体类中描述出两个实体的关系</p> <p>第四步：配置出实体类和数据库表的关系映射（重点）<br /> @ManyToOne、@OneToMany 只需配置一个即可，看业务想要查看的数据情况而定。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/d8eb630e47db6d5360b7cfa3abe34954.jpg" alt="springdatajpa @ManyToOne、@OneToMany的使用"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/394c9904b2e2b2f2b6bda24d472f0e98.jpg" alt="springdatajpa @ManyToOne、@OneToMany的使用"></p> <p>@OneToMany:<br /> 作用：建立一对多的关系映射<br /> 属性：<br /> targetEntityClass：指定多的一方的类的字节码<br /> mappedBy：指定从表实体类中引用主表对象的名称。<br /> cascade：指定要使用的级联操作<br /> fetch：指定是否采用延迟加载<br /> orphanRemoval：是否使用孤儿删除</p> <p>@ManyToOne<br /> 作用：建立多对一的关系<br /> 属性：<br /> targetEntityClass：指定一的一方实体类字节码<br /> cascade：指定要使用的级联操作<br /> fetch：指定是否采用延迟加载<br /> optional：关联是否可选。如果设置为false，则必须始终存在非空关系。</p> <p>@JoinColumn<br /> 作用：用于定义主键字段和外键字段的对应关系。<br /> 属性：<br /> name：指定外键字段的名称<br /> referencedColumnName：指定引用主表的主键字段名称<br /> unique：是否唯一。默认值不唯一<br /> nullable：是否允许为空。默认值允许。<br /> insertable：是否允许插入。默认值允许。<br /> updatable：是否允许更新。默认值允许。<br /> columnDefinition：列的定义信息。<br /> name、referencedColumnName：所用的字段 不一定非要在表中设置foreign key，能够表明主从表的关联关系即可</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-24189.htm">郑州宠物疫苗批发地址（郑州动物疫苗批发地址）</a></p>
                                         <p>下一个：<a href="/news/article-24656.htm">netty系列之:netty中的核心MessageToByte编码器</a></p>
@@ -107,16 +107,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-subscribe-node.htm" title="12月2日→19.8M/S|2024年最新免费节点BifrosTV订阅链接地址">12月2日→19.8M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-high-speed-nodes.htm" title="10月18日→20.5M/S|2024年最新免费节点BifrosTV订阅链接地址">10月18日→20.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-21440.htm" title="动物医院的英语短语有哪些（动物医院英语怎么写）">动物医院的英语短语有哪些（动物医院英语怎么写）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe-links.htm" title="11月19日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址">11月19日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share-links.htm" title="12月3日→22.4M/S|2024年最新免费节点BifrosTV订阅链接地址">12月3日→22.4M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-25585.htm" title="宠物用品展会2023年时间表上海（2020年上海国际宠物用品展）">宠物用品展会2023年时间表上海（2020年上海国际宠物用品展）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-13-node-share-links.htm" title="12月13日→20.6M/S|2024年最新免费节点BifrosTV订阅链接地址">12月13日→20.6M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-16-node-share.htm" title="10月16日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址">10月16日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
                         <li class="py-2"><a href="/news/article-19596.htm" title="在我的城市里有一家宠物医院用英语怎么说? 在我的城市里有一家宠物医院用英语怎么说谐音">在我的城市里有一家宠物医院用英语怎么说? 在我的城市里有一家宠物医院用英语怎么说谐音</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-25-node-share.htm" title="10月25日→19.9M/S|2024年最新免费节点BifrosTV订阅链接地址">10月25日→19.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21885.htm" title="宠物店挣钱吗?（宠物店到底挣不挣钱?）">宠物店挣钱吗?（宠物店到底挣不挣钱?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-subscribe-node.htm" title="12月15日→21.9M/S|2024年最新免费节点BifrosTV订阅链接地址">12月15日→21.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-10-node-share.htm" title="9月10日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址">9月10日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-26983.htm" title="springboot：异步注解@Async的前世今生_在线工具">springboot：异步注解@Async的前世今生_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-18708.htm" title="动物疫苗经销商有哪些公司上市（动物疫苗销售）">动物疫苗经销商有哪些公司上市（动物疫苗销售）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-7-free-node-subscribe-links.htm" title="9月7日→22.9M/S|2024年最新免费节点BifrosTV订阅链接地址">9月7日→22.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-26063.htm" title="【nodejs】【mongo】nodejs数据查询【mongo】">【nodejs】【mongo】nodejs数据查询【mongo】</a></li>
+                        <li class="py-2"><a href="/news/article-23719.htm" title="太原宠物领养中心地址（太原宠物救助站领养宠物）">太原宠物领养中心地址（太原宠物救助站领养宠物）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-30-free-node-subscribe.htm" title="9月30日→18.1M/S|2024年最新免费节点BifrosTV订阅链接地址">9月30日→18.1M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -128,7 +128,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -154,6 +154,15 @@
         <div class="content container">
             <div class="row">
                 <div class="col-xs-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                     <p class="margin-b-0">
                         <a href="/">BifrosTV机场节点订阅官网</a> 版权所有
                         <br />
