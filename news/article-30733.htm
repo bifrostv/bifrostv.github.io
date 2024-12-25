@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+
+<head>
+        <link rel="canonical" href="https://bifrostv.github.io/news/article-30733.htm" />
+    <meta charset="utf-8" />
+    <title>python神经网络tf.name_scope和tf.variable_scope函数区别_python</title>
+        <meta name="description" content="目录  学习前言 两者区别 tf.variable_scope函数 测试代码  1、使用reuse=True共享变量 2、使用AUTO_REUSE共享变量     学习前言 最近在学目标检测……SSD" />
+        <link rel="icon" href="/assets/website/img/bifrostv/favicon.ico" type="image/x-icon"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <link href="/assets/website/js/frontend/bifrostv/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/website/js/frontend/bifrostv/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- PAGE LEVEL PLUGIN STYLES -->
+    <link href="/assets/website/css/bifrostv/animate.css" rel="stylesheet">
+    <!-- THEME STYLES -->
+    <link href="/assets/website/css/bifrostv/layout.min.css" rel="stylesheet" type="text/css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VEEJKF77CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VEEJKF77CS');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".header" data-page="detail">
+        <!--========== HEADER ==========-->
+    <header class="header navbar-fixed-top">
+        <!-- Navbar -->
+        <nav class="navbar" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="menu-container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="toggle-icon"></span>
+                    </button>
+                    <!-- Logo -->
+                    <div class="logo">
+                                                <a class="logo-wrap" href="/">
+                            <span>Bifrostv</span>
+                        </a>
+                                            </div>
+                    <!-- End Logo -->
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse nav-collapse">
+                    <div class="menu-container">
+                        <ul class="nav navbar-nav navbar-nav-right">
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-item-child nav-item-hover" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Navbar Collapse -->
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--========== END HEADER ==========-->
+    <!--========== SLIDER ==========-->
+    <div class="promo-block parallax-window" data-parallax="scroll" data-image-src="/assets/website/img/bifrostv/1920x1080/01.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-block-divider">
+                        <h1 class="promo-block-title">python神经网络tf.name_scope和tf.variable_scope函数区别_python</h1>
+                        <p class="promo-block-text">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </div>
+    <!--========== SLIDER ==========-->
+    <!--========== PAGE LAYOUT ==========-->
+    <!-- About -->
+    <div id="about">
+        <div class="container content-lg">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">学习前言</a></li> <li><a href="#_label1" rel="nofollow">两者区别</a></li> <li><a href="#_label2" rel="nofollow">tf.variable_scope函数</a></li> <li><a href="#_label3" rel="nofollow">测试代码</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_3_0" rel="nofollow">1、使用reuse=True共享变量</a></li> <li><a href="#_lab2_3_1" rel="nofollow">2、使用AUTO_REUSE共享变量</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>学习前言</h2> <p>最近在学目标检测……SSD的源码好复杂……看了很多版本的SSD源码，发现他们会使用tf.variable_scope，刚开始我还以为就是tf.name_scope，才发现原来两者是不一样的</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>两者区别</h2> <p>tf.name_scope()和tf.variable_scope()是两个作用域，一般与两个创建/调用变量的函数tf.variable() 和tf.get_variable()搭配使用。</p> <p>为什么要使用两个不同的作用域方式呢？其主要原因与变量共享相关。</p> <p>变量共享主要涉及两个函数：tf.Variable() 和tf.get_variable()</p> <p>在tf.variable_scope的作用域下需要使用tf.get_variable()函数，这是因为tf.get_variable()拥有一个变量检查机制，会检测已经存在的变量是否设置为共享变量，当同名变量存在共享机制时，不会报错，如果并未设置为共享变量，则报错。</p> <p>如果使用tf.Variable() 的话每次都会新建变量。但是很多时候我们希望重用一些变量，所以我们使用到了get_variable()，它会去搜索变量名，有就直接用，没有再新建。<br />在进行变量共享的时候需要使用到标志reuse，当reuse = True时是可以共享，False时不可以共享。</p> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>tf.variable_scope函数</h2> <div class="ay1code"> <pre class="brush:py;">tf.variable_scope(      name_or_scope,      default_name=None,      values=None,      initializer=None,      regularizer=None,      caching_device=None,      partitioner=None,      custom_getter=None,      reuse=None,      dtype=None,      use_resource=None,      constraint=None,      auxiliary_name_scope=True  )  </pre> </div> <p>其中：</p> <p>1、name_or_scope：范围的名称。</p> <p>2、default_name：如果name_or_scope参数为None，则使用默认的名称，该名称将是唯一的；如果提供了name_or_scope，它将不会被使用，因此它不是必需的，并且可以是None。</p> <p>3、values：传递给操作函数的Tensor参数列表。</p> <p>4、initializer：此范围内变量的默认初始值设定项。</p> <p>5、regularizer：此范围内变量的默认正规化器。</p> <p>6、caching_device：此范围内变量的默认缓存设备。</p> <p>7、partitioner：此范围内变量的默认分区程序。</p> <p>8、custom_getter：此范围内的变量的默认自定义吸气。</p> <p>9、reuse：可以是True、None或tf.AUTO_REUSE；如果是True，即可以开始共享变量，变量重构用；如果是tf.AUTO_REUSE，则我们创建变量（如果它们不存在），否则返回它们（用于在第一轮创建变量）；如果是None，则我们继承父范围的重用标志。</p> <p>10、dtype：在此范围中创建的变量类型。</p> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>测试代码</h2> <p class="maodian"><a name="_lab2_3_0" rel="nofollow"></a></p> <h3>1、使用reuse=True共享变量</h3> <div class="ay1code"> <pre class="brush:py;">import tensorflow as tf  # 初始化第一个v1  with tf.variable_scope("scope1"):      v1 = tf.get_variable("v1",[3,3],tf.float32,initializer=tf.constant_initializer(1))      print(v1.name)  # 不同的作用域  with tf.variable_scope("scope2"):      v1 = tf.get_variable("v1",[3,3],tf.float32,initializer=tf.constant_initializer(1))      print(v1.name)  # 开始共享  with tf.variable_scope("scope1",reuse = True):      v1_share = tf.get_variable("v1",[3,3],tf.float32,initializer=tf.constant_initializer(1))      print(v1_share.name)  </pre> </div> <p>运行结果为：</p> <blockquote> <p>scope1/v1:0<br />scope2/v1:0<br />scope1/v1:0</p> </blockquote> <p>如果在下部再加上</p> <div class="ay1code"> <pre class="brush:py;">with tf.variable_scope("scope2"):      v1_share = tf.get_variable("v1",[3,3],tf.float32,initializer=tf.constant_initializer(1))      print(v1_share.name)  </pre> </div> <p>此时没有reuse，不能共享，程序报错。</p> <p class="maodian"><a name="_lab2_3_1" rel="nofollow"></a></p> <h3>2、使用AUTO_REUSE共享变量</h3> <div class="ay1code"> <pre class="brush:py;">import tensorflow as tf  # 使用AUTO_REUSE可以直接创建  # 如果reuse = True，初始化第一轮创建的时候会报错  def demo():    with tf.variable_scope("demo", reuse=tf.AUTO_REUSE):      v = tf.get_variable("v", [1])    return v  v1 = demo()   v2 = demo()  print(v1.name)  </pre> </div> <p>运行结果为：</p> <blockquote> <p>demo/v:0<br />demo/v:0</p> </blockquote> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-30260.htm">成都宠物领养平台微博（成都宠物论坛领养）</a></p>
+                                        <p>下一个：<a href="/news/article-30734.htm">南京宠物狗领养中心地址查询电话（南京有没有宠物领养中心）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-node-share-links.htm" title="12月14日→22.6M/S|2024年最新免费节点BifrosTV订阅链接地址">12月14日→22.6M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22806.htm" title="前端文件上传核心思想详解">前端文件上传核心思想详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-node-share.htm" title="10月19日→22.1M/S|2024年最新免费节点BifrosTV订阅链接地址">10月19日→22.1M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-30733.htm" title="python神经网络tf.name_scope和tf.variable_scope函数区别_python">python神经网络tf.name_scope和tf.variable_scope函数区别_python</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-high-speed-nodes.htm" title="10月18日→20.5M/S|2024年最新免费节点BifrosTV订阅链接地址">10月18日→20.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-free-subscribe-node.htm" title="11月24日→18.7M/S|2024年最新免费节点BifrosTV订阅链接地址">11月24日→18.7M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-subscribe-node.htm" title="11月9日→19.1M/S|2024年最新免费节点BifrosTV订阅链接地址">11月9日→19.1M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-free-subscribe-node.htm" title="10月22日→22.8M/S|2024年最新免费节点BifrosTV订阅链接地址">10月22日→22.8M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-25118.htm" title="宠物领养中心在哪里（宠物领养中心官网）">宠物领养中心在哪里（宠物领养中心官网）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="12月1日→19.7M/S|2024年最新免费节点BifrosTV订阅链接地址">12月1日→19.7M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About -->
+    <!--========== END PAGE LAYOUT ==========-->
+        <!--========== FOOTER ==========-->
+    <footer class="footer">
+        <div class="content container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p class="margin-b-0">
+                        <a href="/">BifrosTV机场节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </footer>
+    <!--========== END FOOTER ==========-->
+    <!-- Back To Top -->
+    <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+    <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- CORE PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.easing.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.smooth-scroll.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.wow.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.parallax.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.appear.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS -->
+    <script src="/assets/website/js/frontend/bifrostv/layout.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/progress-bar.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/masonry.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/wow.min.js" type="text/javascript"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+
+</html>
