@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+
+<head>
+        <link rel="canonical" href="https://bifrostv.github.io/news/article-38902.htm" />
+    <meta charset="utf-8" />
+    <title>Swagger在SpringBoot中的的一些详细配置</title>
+        <meta name="description" content="搭建环境 参考Swagger在SpringBoot的简单使用  注意 Swagger是基于Docker的，所以下面的配置全是Docker相关  配置Swagger的UI界面中的一些信息 package" />
+        <link rel="icon" href="/assets/website/img/bifrostv/favicon.ico" type="image/x-icon"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <link href="/assets/website/js/frontend/bifrostv/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/website/js/frontend/bifrostv/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- PAGE LEVEL PLUGIN STYLES -->
+    <link href="/assets/website/css/bifrostv/animate.css" rel="stylesheet">
+    <!-- THEME STYLES -->
+    <link href="/assets/website/css/bifrostv/layout.min.css" rel="stylesheet" type="text/css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VEEJKF77CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VEEJKF77CS');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".header" data-page="detail">
+        <!--========== HEADER ==========-->
+    <header class="header navbar-fixed-top">
+        <!-- Navbar -->
+        <nav class="navbar" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="menu-container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="toggle-icon"></span>
+                    </button>
+                    <!-- Logo -->
+                    <div class="logo">
+                                                <a class="logo-wrap" href="/">
+                            <span>Bifrostv</span>
+                        </a>
+                                            </div>
+                    <!-- End Logo -->
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse nav-collapse">
+                    <div class="menu-container">
+                        <ul class="nav navbar-nav navbar-nav-right">
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-item-child nav-item-hover" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Navbar Collapse -->
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--========== END HEADER ==========-->
+    <!--========== SLIDER ==========-->
+    <div class="promo-block parallax-window" data-parallax="scroll" data-image-src="/assets/website/img/bifrostv/1920x1080/01.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-block-divider">
+                        <h1 class="promo-block-title">Swagger在SpringBoot中的的一些详细配置</h1>
+                        <p class="promo-block-text">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </div>
+    <!--========== SLIDER ==========-->
+    <!--========== PAGE LAYOUT ==========-->
+    <!-- About -->
+    <div id="about">
+        <div class="container content-lg">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="_0" rel="nofollow"></a>搭建环境</h2> <p>参考<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/P_ning/article/details/106975168"  rel="nofollow">Swagger在SpringBoot的简单使用</a></p> <h2> <a id="_3" rel="nofollow"></a>注意</h2> <p>Swagger是基于Docker的，所以下面的配置全是Docker相关</p> <h2> <a id="SwaggerUI_6" rel="nofollow"></a>配置Swagger的UI界面中的一些信息</h2> <pre><code class="prism language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>example<span class="token punctuation">.</span>swagger<span class="token punctuation">.</span>config<span class="token punctuation">;</span>  <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Bean<span class="token punctuation">;</span> <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Configuration<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>service<span class="token punctuation">.</span>ApiInfo<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>service<span class="token punctuation">.</span>Contact<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>spi<span class="token punctuation">.</span>DocumentationType<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>web<span class="token punctuation">.</span>plugins<span class="token punctuation">.</span>Docket<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>swagger2<span class="token punctuation">.</span>annotations<span class="token punctuation">.</span>EnableSwagger2<span class="token punctuation">;</span>  <span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>   <span class="token annotation punctuation">@Configuration</span> <span class="token annotation punctuation">@EnableSwagger2</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SwaggerConfig</span> <span class="token punctuation">{<!-- --></span>     <span class="token annotation punctuation">@Bean</span>     <span class="token keyword">public</span> Docket <span class="token function">docket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span>DocumentationType<span class="token punctuation">.</span>SWAGGER_2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token comment">//配置页面的一些相关介绍</span>     <span class="token annotation punctuation">@Bean</span>     <span class="token keyword">public</span> ApiInfo <span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//通过源码发现只有构造方法并没有set方法，所以只有构造方法能够注入</span>         Contact contact <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Contact</span><span class="token punctuation">(</span><span class="token string">"作者名字"</span><span class="token punctuation">,</span><span class="token string">"跟多相关链接"</span><span class="token punctuation">,</span><span class="token string">"邮箱"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//作者信息</span>         ApiInfo apiInfo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApiInfo</span><span class="token punctuation">(</span>                                         <span class="token string">"api文档的标题"</span><span class="token punctuation">,</span> <span class="token string">"描述信息"</span><span class="token punctuation">,</span><span class="token string">"版本号"</span><span class="token punctuation">,</span><span class="token string">"服务条款的链接"</span><span class="token punctuation">,</span>                                         contact<span class="token punctuation">,</span><span class="token string">"许可证"</span><span class="token punctuation">,</span> <span class="token string">"许可证的链接"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>                                     <span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">return</span> apiInfo<span class="token punctuation">;</span>      <span class="token punctuation">}</span> <span class="token punctuation">}</span>  </code></pre> <h2> <a id="Swagger_43" rel="nofollow"></a>Swagger扫描指定接口</h2> <p><strong>RequestHandlerSelectors有几种扫描方式：</strong></p> <ol> <li>basePackage：指定包扫描<br /> 示范：<code>.apis(RequestHandlerSelectors.basePackage("com.example.swagger.controller"))</code> </li> <li>any:扫描该项目的所有请求链接<br /> 示例：<code>.apis(RequestHandlerSelectors.any())</code> </li> <li>none：所有请求链接都不扫描<br /> 示例：<code>.apis(RequestHandlerSelectors.none())</code> </li> <li>withClassAnnotation:通过类的注解扫描,就是类名上面的注释，可以是Controller，RestController,RequestMapping,GetMapping ,PostMapping等等<br /> 示例：<code>.apis(withClassAnnotation.)</code> </li> <li>withMethodAnnotation:通过方法的注解扫描，也就是方法上面的注解，可以是RequestMapping ,GetMapping ,PostMapping等等<br /> 示例：<code>.apis(RequestHandlerSelectors.withMethodAnnotation(RequestMapping.class))</code> </li> </ol> <pre><code class="prism language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>example<span class="token punctuation">.</span>swagger<span class="token punctuation">.</span>config<span class="token punctuation">;</span>  <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Bean<span class="token punctuation">;</span> <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Configuration<span class="token punctuation">;</span> <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span>Controller<span class="token punctuation">;</span> <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RequestMapping<span class="token punctuation">;</span> <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RestController<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>builders<span class="token punctuation">.</span>RequestHandlerSelectors<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>service<span class="token punctuation">.</span>ApiInfo<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>service<span class="token punctuation">.</span>Contact<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>spi<span class="token punctuation">.</span>DocumentationType<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>web<span class="token punctuation">.</span>plugins<span class="token punctuation">.</span>Docket<span class="token punctuation">;</span> <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>swagger2<span class="token punctuation">.</span>annotations<span class="token punctuation">.</span>EnableSwagger2<span class="token punctuation">;</span>  <span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>   <span class="token annotation punctuation">@Configuration</span> <span class="token annotation punctuation">@EnableSwagger2</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SwaggerConfig</span> <span class="token punctuation">{<!-- --></span>     <span class="token annotation punctuation">@Bean</span>     <span class="token keyword">public</span> Docket <span class="token function">docket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span>DocumentationType<span class="token punctuation">.</span>SWAGGER_2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>                 <span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>                 <span class="token comment">/*RequestHandlerSelectors有几种扫描方式：                     1.basePackage：指定包扫描                         示例：.apis(RequestHandlerSelectors.basePackage("com.example.swagger.controller"))                     2.any:扫描该项目的所有请求链接                         示例：.apis(RequestHandlerSelectors.any())                     3.none：所有请求链接都不扫描                         示例：.apis(RequestHandlerSelectors.none())                     4.withClassAnnotation:通过类的注解扫描,就是类名上面的注释                       可以是Controller，RestController,RequestMapping,GetMapping ,PostMapping等等                         示例：.apis(withClassAnnotation.)                     5.withMethodAnnotation:通过方法的注解扫描，也就是方法上面的注解                       可以是RequestMapping ,GetMapping ,PostMapping等等                         示例：.apis(RequestHandlerSelectors.withMethodAnnotation(RequestMapping.class))                      一般推荐第一种，其他作为了解即可                  */</span>                 <span class="token punctuation">.</span><span class="token function">apis</span><span class="token punctuation">(</span>RequestHandlerSelectors<span class="token punctuation">.</span><span class="token function">withClassAnnotation</span><span class="token punctuation">(</span>Controller<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span>                 <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token comment">//配置页面的一些相关介绍</span>     <span class="token annotation punctuation">@Bean</span>     <span class="token keyword">public</span> ApiInfo <span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//通过源码发现只有构造方法并没有set方法，所以只有构造方法能够注入</span>         Contact contact <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Contact</span><span class="token punctuation">(</span><span class="token string">"作者名字"</span><span class="token punctuation">,</span><span class="token string">"跟多相关链接"</span><span class="token punctuation">,</span><span class="token string">"邮箱"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//作者信息</span>         ApiInfo apiInfo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApiInfo</span><span class="token punctuation">(</span>                                         <span class="token string">"api文档的标题"</span><span class="token punctuation">,</span> <span class="token string">"描述信息"</span><span class="token punctuation">,</span><span class="token string">"版本号"</span><span class="token punctuation">,</span><span class="token string">"服务条款的链接"</span><span class="token punctuation">,</span>                                         contact<span class="token punctuation">,</span><span class="token string">"许可证"</span><span class="token punctuation">,</span> <span class="token string">"许可证的链接"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>                                     <span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">return</span> apiInfo<span class="token punctuation">;</span>      <span class="token punctuation">}</span> <span class="token punctuation">}</span>  </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-38404.htm">太原哪里可以领养小狗（太原哪里可以领养小狗狗）</a></p>
+                                        <p>下一个：<a href="/news/article-38903.htm">南平领养猫（泉州领养猫）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-node-share.htm" title="10月31日→22M/S|2024年最新免费节点BifrosTV订阅链接地址">10月31日→22M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-25584.htm" title="动物诊所英文翻译（动物诊所英文翻译怎么说）">动物诊所英文翻译（动物诊所英文翻译怎么说）</a></li>
+                        <li class="py-2"><a href="/news/article-22349.htm" title="演员王东的电视剧（王东演员）">演员王东的电视剧（王东演员）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-free-subscribe-node.htm" title="1月5日→19.1M/S|2025年最新免费节点BifrosTV订阅链接地址">1月5日→19.1M/S|2025年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-11-node-share.htm" title="10月11日→22.1M/S|2024年最新免费节点BifrosTV订阅链接地址">10月11日→22.1M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-18708.htm" title="动物疫苗经销商有哪些公司上市（动物疫苗销售）">动物疫苗经销商有哪些公司上市（动物疫苗销售）</a></li>
+                        <li class="py-2"><a href="/news/article-26062.htm" title="深入浅出Java线程池原理分析与使用">深入浅出Java线程池原理分析与使用</a></li>
+                        <li class="py-2"><a href="/news/article-38903.htm" title="南平领养猫（泉州领养猫）">南平领养猫（泉州领养猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-free-node-subscribe-links.htm" title="12月10日→22.6M/S|2024年最新免费节点BifrosTV订阅链接地址">12月10日→22.6M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-34536.htm" title="猫最忌讳的三个属相（有些人命里不能养猫）">猫最忌讳的三个属相（有些人命里不能养猫）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About -->
+    <!--========== END PAGE LAYOUT ==========-->
+        <!--========== FOOTER ==========-->
+    <footer class="footer">
+        <div class="content container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p class="margin-b-0">
+                        <a href="/">BifrosTV机场节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </footer>
+    <!--========== END FOOTER ==========-->
+    <!-- Back To Top -->
+    <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+    <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- CORE PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.easing.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.smooth-scroll.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.wow.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.parallax.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.appear.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS -->
+    <script src="/assets/website/js/frontend/bifrostv/layout.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/progress-bar.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/masonry.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/wow.min.js" type="text/javascript"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+
+</html>
