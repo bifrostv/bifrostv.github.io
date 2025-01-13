@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+
+<head>
+        <link rel="canonical" href="https://bifrostv.github.io/news/article-39895.htm" />
+    <meta charset="utf-8" />
+    <title>游戏开发设计模式：单例模式</title>
+        <meta name="description" content="文章目录  一、单例模式     1.1 单例模式总结介绍   1.1.1什么是单例模式 1.1.2单例模式分类 1.1.3单例类特点 1.1.4如何保证线程安全？   1.2 单例模式的几种写法  " />
+        <link rel="icon" href="/assets/website/img/bifrostv/favicon.ico" type="image/x-icon"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <link href="/assets/website/js/frontend/bifrostv/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/website/js/frontend/bifrostv/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- PAGE LEVEL PLUGIN STYLES -->
+    <link href="/assets/website/css/bifrostv/animate.css" rel="stylesheet">
+    <!-- THEME STYLES -->
+    <link href="/assets/website/css/bifrostv/layout.min.css" rel="stylesheet" type="text/css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VEEJKF77CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VEEJKF77CS');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".header" data-page="detail">
+        <!--========== HEADER ==========-->
+    <header class="header navbar-fixed-top">
+        <!-- Navbar -->
+        <nav class="navbar" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="menu-container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="toggle-icon"></span>
+                    </button>
+                    <!-- Logo -->
+                    <div class="logo">
+                                                <a class="logo-wrap" href="/">
+                            <span>Bifrostv</span>
+                        </a>
+                                            </div>
+                    <!-- End Logo -->
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse nav-collapse">
+                    <div class="menu-container">
+                        <ul class="nav navbar-nav navbar-nav-right">
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/news/">新闻资讯</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="#">关于</a></li>
+                            <li class="nav-item"><a class="nav-item-child nav-item-hover" href="#">联系</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Navbar Collapse -->
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--========== END HEADER ==========-->
+    <!--========== SLIDER ==========-->
+    <div class="promo-block parallax-window" data-parallax="scroll" data-image-src="/assets/website/img/bifrostv/1920x1080/01.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-block-divider">
+                        <h1 class="promo-block-title">游戏开发设计模式：单例模式</h1>
+                        <p class="promo-block-text">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </div>
+    <!--========== SLIDER ==========-->
+    <!--========== PAGE LAYOUT ==========-->
+    <!-- About -->
+    <div id="about">
+        <div class="container content-lg">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#_0" rel="nofollow">一、单例模式</a></li> <li> <ul> <li> <ul> <li><a href="#11__2" rel="nofollow">1.1 单例模式总结介绍</a></li> <li> <ul> <li><a href="#111_3" rel="nofollow">1.1.1什么是单例模式</a></li> <li><a href="#112_6" rel="nofollow">1.1.2单例模式分类</a></li> <li><a href="#113_10" rel="nofollow">1.1.3单例类特点</a></li> <li><a href="#114_14" rel="nofollow">1.1.4如何保证线程安全？</a></li> </ul> </li> <li><a href="#12__17" rel="nofollow">1.2 单例模式的几种写法</a></li> <li> <ul> <li><a href="#121____18" rel="nofollow">1.2.1普通懒汉式单例 （ 线程不安全 ）</a></li> <li><a href="#122____58" rel="nofollow">1.2.2加锁的懒汉式单例 （ 线程安全 ）</a></li> <li><a href="#123C11__101" rel="nofollow">1.2.3内部静态变量的懒汉单例（C++11 线程安全）</a></li> <li><a href="#124__125" rel="nofollow">1.2.4饿汉式单例 （本身就线程安全）</a></li> </ul> </li> <li><a href="#13__155" rel="nofollow">1.3 单例模式的优缺点</a></li> <li><a href="#14__159" rel="nofollow">1.4 在游戏中的应用</a></li> </ul> </li> </ul> </li> </ul> </div> <h3><a id="11__2" rel="nofollow"></a>1.1 单例模式总结介绍</h3> <h4><a id="111_3" rel="nofollow"></a>1.1.1什么是单例模式</h4> <p>单例模式指在整个系统生命周期里，<strong>保证一个类只能产生一个实例</strong>，确保该类的唯一性。</p> <h4><a id="112_6" rel="nofollow"></a>1.1.2单例模式分类</h4> <p>单例模式可以分为懒汉式和饿汉式，两者之间的区别在于创建实例的时间不同：</p> <ul> <li><strong>懒汉式：</strong> 指系统运行中，实例并不存在，只有当需要使用该实例时，才会去创建并使用实例。（这种方式要考虑线程安全）</li> <li><strong>饿汉式：</strong> 指系统一运行，就初始化创建实例，当需要时，直接调用即可。（本身就线程安全，没有多线程的问题）</li> </ul> <h4><a id="113_10" rel="nofollow"></a>1.1.3单例类特点</h4> <ul> <li>构造函数和析构函数为private类型，目的<strong>禁止外部构造和析构</strong></li> <li>拷贝构造和赋值构造函数为private类型，目的是禁止外部拷贝和赋值，确保实例的唯一性</li> <li>类里有个可以全局访问的获取实例的静态函数</li> </ul> <h4><a id="114_14" rel="nofollow"></a>1.1.4如何保证线程安全？</h4> <ul> <li>加锁访问</li> <li>进程开始的时候直接初始化，不管是否使用（这个只确保在初始化的时候只有一份实例）</li> </ul> <h3><a id="12__17" rel="nofollow"></a>1.2 单例模式的几种写法</h3> <h4><a id="121____18" rel="nofollow"></a>1.2.1普通懒汉式单例 （ 线程不安全 ）</h4> <pre><code class="prism language-cpp"><span class="token keyword">class</span><span class="token class-name">Singleton</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token operator">:</span><span class="token comment">// 外部接口，获取单例对象指针</span><span class="token keyword">static</span> Singleton<span class="token operator">*</span><span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 释放单例，进程退出时调用</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">deleteInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">private</span><span class="token operator">:</span><span class="token comment">// 将其构造和析构成为私有的, 禁止外部构造和析构,后续代码就不再重复添加这块</span><span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">~</span><span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 将其拷贝构造和赋值构造成为私有函数, 禁止外部拷贝和赋值</span><span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token keyword">const</span> Singleton<span class="token operator">&amp;</span>signal<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">const</span> Singleton<span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> Singleton<span class="token operator">&amp;</span>signal<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">private</span><span class="token operator">:</span><span class="token comment">// 唯一单例对象指针</span><span class="token keyword">static</span> Singleton<span class="token operator">*</span>m_SingleInstance<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment">//初始化静态成员变量</span> Singleton<span class="token operator">*</span>Singleton<span class="token operator">::</span>m_SingleInstance<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span> Singleton<span class="token operator">*</span>Singleton<span class="token operator">::</span><span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">if</span><span class="token punctuation">(</span>m_SingleInstance<span class="token operator">==</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		m_SingleInstance<span class="token operator">=</span><span class="token keyword">new</span><span class="token punctuation">(</span>std<span class="token operator">::</span>nothrow<span class="token punctuation">)</span> Singleton<span class="token punctuation">;</span><span class="token comment">// 没有加锁是线程不安全的，当线程并发时会创建多个实例</span><span class="token punctuation">}</span><span class="token keyword">return</span> m_SingleInstance<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">void</span> Singleton<span class="token operator">::</span><span class="token function">deleteInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">if</span><span class="token punctuation">(</span>m_SingleInstance<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">delete</span> m_SingleInstance<span class="token punctuation">;</span>         m_SingleInstance<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <h4><a id="122____58" rel="nofollow"></a>1.2.2加锁的懒汉式单例 （ 线程安全 ）</h4> <pre><code class="prism language-cpp"><span class="token keyword">class</span><span class="token class-name">Singleton</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token operator">:</span><span class="token comment">// 获取单实例对象</span><span class="token keyword">static</span> Singleton<span class="token operator">*</span><span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//释放单实例，进程退出时调用</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">deleteInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">private</span><span class="token operator">:</span><span class="token comment">// 将其构造和析构成为私有的, 禁止外部构造和析构...</span><span class="token keyword">private</span><span class="token operator">:</span><span class="token comment">// 唯一单实例对象指针</span><span class="token keyword">static</span> Singleton<span class="token operator">*</span>m_SingleInstance<span class="token punctuation">;</span><span class="token keyword">static</span> std<span class="token operator">::</span>mutex m_Mutex<span class="token punctuation">;</span><span class="token comment">// 锁</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment">//初始化静态成员变量</span> Singleton<span class="token operator">*</span>Singleton<span class="token operator">::</span>m_SingleInstance<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span> std<span class="token operator">::</span>mutex Singleton<span class="token operator">::</span>m_Mutex<span class="token punctuation">;</span> Singleton<span class="token operator">*</span> Singleton<span class="token operator">::</span><span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//  这里使用了两个 if判断语句的技术称为双检锁；好处是，只有判断指针为空的时候才加锁，</span><span class="token comment">//  避免每次调用 GetInstance的方法都加锁，锁的开销毕竟还是有点大的。</span><span class="token keyword">if</span><span class="token punctuation">(</span>m_SingleInstance<span class="token operator">==</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         std<span class="token operator">::</span>unique_lock<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">&gt;</span><span class="token function">lock</span><span class="token punctuation">(</span>m_Mutex<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 加锁</span><span class="token keyword">if</span><span class="token punctuation">(</span>m_SingleInstance<span class="token operator">==</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>             m_SingleInstance<span class="token operator">=</span><span class="token keyword">new</span><span class="token punctuation">(</span>std<span class="token operator">::</span>nothrow<span class="token punctuation">)</span> Singleton<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">return</span> m_SingleInstance<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">void</span> Singleton<span class="token operator">::</span><span class="token function">deleteInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>     std<span class="token operator">::</span>unique_lock<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">&gt;</span><span class="token function">lock</span><span class="token punctuation">(</span>m_Mutex<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 加锁，避免释放两次</span><span class="token keyword">if</span><span class="token punctuation">(</span>m_SingleInstance<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">delete</span> m_SingleInstance<span class="token punctuation">;</span>         m_SingleInstance<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <h4><a id="123C11__101" rel="nofollow"></a>1.2.3内部静态变量的懒汉单例（C++11 线程安全）</h4> <pre><code class="prism language-cpp"><span class="token keyword">class</span><span class="token class-name">Singleton</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token operator">:</span><span class="token comment">// 获取单实例对象</span><span class="token keyword">static</span> Singleton<span class="token operator">&amp;</span><span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">private</span><span class="token operator">:</span><span class="token comment">// 禁止外部构造</span><span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 禁止外部析构</span><span class="token operator">~</span><span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 禁止外部复制构造</span><span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token keyword">const</span> Single<span class="token operator">&amp;</span>signal<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 禁止外部赋值操作</span><span class="token keyword">const</span> Singleton<span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> Singleton<span class="token operator">&amp;</span>Singleton<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span> Singleton<span class="token operator">&amp;</span> Singleton<span class="token operator">::</span><span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 局部静态特性的方式实现单实例</span><span class="token keyword">static</span> Singleton signal<span class="token punctuation">;</span><span class="token keyword">return</span> signal<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <h4><a id="124__125" rel="nofollow"></a>1.2.4饿汉式单例 （本身就线程安全）</h4> <pre><code class="prism language-cpp"><span class="token keyword">class</span><span class="token class-name">Singleton</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token operator">:</span><span class="token comment">// 获取单实例</span><span class="token keyword">static</span> Singleton<span class="token operator">*</span><span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 释放单实例，进程退出时调用</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">deleteInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">private</span><span class="token operator">:</span><span class="token comment">// 将其构造和析构成为私有的, 禁止外部构造和析构..</span><span class="token keyword">private</span><span class="token operator">:</span><span class="token comment">// 唯一单实例对象指针</span><span class="token keyword">static</span> Singleton<span class="token operator">*</span>g_pSingleton<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment">// 代码一运行就初始化创建实例 ，本身就线程安全</span> Singleton<span class="token operator">*</span> Singleton<span class="token operator">::</span>g_pSingleton<span class="token operator">=</span><span class="token keyword">new</span><span class="token punctuation">(</span>std<span class="token operator">::</span>nothrow<span class="token punctuation">)</span> Singleton<span class="token punctuation">;</span> Singleton<span class="token operator">*</span> Singleton<span class="token operator">::</span><span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> g_pSingleton<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">void</span> Singleton<span class="token operator">::</span><span class="token function">deleteInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">if</span><span class="token punctuation">(</span>g_pSingleton<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">delete</span> g_pSingleton<span class="token punctuation">;</span>         g_pSingleton<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <h3><a id="13__155" rel="nofollow"></a>1.3 单例模式的优缺点</h3> <p>单例模式就像一个被封装在类里面的全局变量，所以全局变量有的缺点它都有：<strong>多线程不友好</strong>、<strong>代码耦合度高</strong>、<strong>追踪状态变化困难</strong>。<br /> 但是单例模式的有点还是很明显的，就是<strong>访问方便</strong>，直接使用全局唯一访问接口就能访问到类。只要包含头文件谁都可以进行访问，没有限制。<br /> 便利的访问是使用单例的主要原因，能够让随时随地获取所需的对象</p> <h3><a id="14__159" rel="nofollow"></a>1.4 在游戏中的应用</h3> <p>游戏中的许多单例类都是<strong>Manager类型</strong>功能，通常这些“管理类”的功能就是管理其他对象，或者就是一个工具类，比如专门写日志的。。<br /> 当需要管理游戏内一类对象的时候，只需要一个全局<strong>Manager类型</strong> 的保姆就可以了。<br /> 在确定使用单例模式前，需要确定是否类实例化出的对象是否是一定是全局唯一的。<br /> 就比如一个游戏中，写日志的类只有一个就可以了，那么就声明一个全局访问写日志的接口。<br /> 或者是游戏资源数据的管理，在其他例如窗口类中，如果需要这个资源，那可以直接去访问这个全局接口，而不是说在类里面自己再重新加载一份。</p> <ul> <li>在游戏中，可能会有很多需要单例实现的帮助类，或者工具类，如果不希望每个类都写一遍单例模式，就可以<strong>使用模板去实现单例</strong>，然后让<strong>工具类们</strong>去<strong>继承</strong>这个模板类</li> </ul> <pre><code class="prism language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">&gt;</span><span class="token keyword">class</span><span class="token class-name">Singleton</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token operator">:</span><span class="token keyword">static</span> T<span class="token operator">&amp;</span><span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">static</span> T instance<span class="token punctuation">;</span><span class="token keyword">return</span> instance<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token function">Singleton</span><span class="token punctuation">(</span>T<span class="token operator">&amp;&amp;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token keyword">delete</span><span class="token punctuation">;</span><span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token keyword">const</span> T<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token keyword">delete</span><span class="token punctuation">;</span><span class="token keyword">void</span><span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> T<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token keyword">delete</span><span class="token punctuation">;</span><span class="token keyword">protected</span><span class="token operator">:</span><span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token keyword">default</span><span class="token punctuation">;</span><span class="token keyword">virtual</span><span class="token operator">~</span><span class="token function">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token keyword">default</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token keyword">class</span><span class="token class-name">Foo</span><span class="token operator">:</span><span class="token keyword">public</span> Singleton<span class="token operator">&lt;</span>Foo<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token operator">:</span><span class="token keyword">void</span><span class="token keyword">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         cout<span class="token operator">&lt;&lt;</span><span class="token operator">&amp;</span><span class="token function">GetInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39894.htm">MySQL的安装和配置(超详细图文教程)</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-high-speed-nodes.htm" title="11月8日→18.8M/S|2024年最新免费节点BifrosTV订阅链接地址">11月8日→18.8M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-20058.htm" title="动物疫苗一般在哪里打的呢多少钱（动物接种疫苗多少钱）">动物疫苗一般在哪里打的呢多少钱（动物接种疫苗多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-high-speed-nodes.htm" title="11月11日→21.5M/S|2024年最新免费节点BifrosTV订阅链接地址">11月11日→21.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-30733.htm" title="python神经网络tf.name_scope和tf.variable_scope函数区别_python">python神经网络tf.name_scope和tf.variable_scope函数区别_python</a></li>
+                        <li class="py-2"><a href="/news/article-20059.htm" title="方宁发现鹿亦尧心里的女人（干货分享）">方宁发现鹿亦尧心里的女人（干货分享）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-free-node-subscribe.htm" title="11月13日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址">11月13日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21885.htm" title="宠物店挣钱吗?（宠物店到底挣不挣钱?）">宠物店挣钱吗?（宠物店到底挣不挣钱?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-node-share.htm" title="10月17日→22.3M/S|2024年最新免费节点BifrosTV订阅链接地址">10月17日→22.3M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-free-subscribe-node.htm" title="12月26日→22.6M/S|2024年最新免费节点BifrosTV订阅链接地址">12月26日→22.6M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-31175.htm" title="动物打狂犬疫苗有效期是多久（动物打狂犬病疫苗）">动物打狂犬疫苗有效期是多久（动物打狂犬病疫苗）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About -->
+    <!--========== END PAGE LAYOUT ==========-->
+        <!--========== FOOTER ==========-->
+    <footer class="footer">
+        <div class="content container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p class="margin-b-0">
+                        <a href="/">BifrosTV机场节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </footer>
+    <!--========== END FOOTER ==========-->
+    <!-- Back To Top -->
+    <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+    <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- CORE PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.easing.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.smooth-scroll.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.wow.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.parallax.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.appear.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS -->
+    <script src="/assets/website/js/frontend/bifrostv/layout.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/progress-bar.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/masonry.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/wow.min.js" type="text/javascript"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+
+</html>
