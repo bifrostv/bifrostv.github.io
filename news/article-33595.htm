@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="no-js">
+<html xml:lang="zh-CN" lang="zh-CN" class="no-js">
 
 <head>
         <link rel="canonical" href="https://bifrostv.github.io/news/article-33595.htm" />
@@ -7,8 +7,37 @@
     <title>有限体积法求解一维非稳态对流扩散方程</title>
         <meta name="description" content="最近想用有限差分法计算二维的顶盖驱动流，在推导过程中遇到了许多问题，例如对流项的离散、“线性化”这一在有限体积法中很常见的操作、\(1-\delta\)压差在有限差分法中的实现、压力项的离散等等。以上" />
         <link rel="icon" href="/assets/website/img/bifrostv/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="BifrosTV机场节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://bifrostv.github.io/news/article-33595.htm" />
+    <meta property="og:site_name" content="BifrosTV机场节点订阅官网" />
+    <meta property="og:title" content="有限体积法求解一维非稳态对流扩散方程" />
+    <meta property="og:image" content="https://bifrostv.github.io/uploads/20240907-1/eb541306ce3a4c7295011c925000fc45.webp" />
+        <meta property="og:release_date" content="2024-12-31T05:55:55" />
+    <meta property="og:updated_time" content="2024-12-31T05:55:55" />
+        <meta property="og:description" content="最近想用有限差分法计算二维的顶盖驱动流，在推导过程中遇到了许多问题，例如对流项的离散、“线性化”这一在有限体积法中很常见的操作、\(1-\delta\)压差在有限差分法中的实现、压力项的离散等等。以上" />
+        
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="有限体积法求解一维非稳态对流扩散方程">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
     <!-- GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
     <link href="/assets/website/js/frontend/bifrostv/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
@@ -107,16 +136,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-high-speed-nodes.htm" title="11月16日→22.4M/S|2024年最新免费节点BifrosTV订阅链接地址">11月16日→22.4M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-12-free-high-speed-nodes.htm" title="10月12日→18.7M/S|2024年最新免费节点BifrosTV订阅链接地址">10月12日→18.7M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-20975.htm" title="打过疫苗的猫抓了一下轻微破皮要打针吗（打过疫苗的猫抓破了一点皮需要打狂犬疫苗吗）">打过疫苗的猫抓了一下轻微破皮要打针吗（打过疫苗的猫抓破了一点皮需要打狂犬疫苗吗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-29-free-node-subscribe-links.htm" title="9月29日→21.8M/S|2024年最新免费节点BifrosTV订阅链接地址">9月29日→21.8M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="12月1日→19.7M/S|2024年最新免费节点BifrosTV订阅链接地址">12月1日→19.7M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-23-node-share-links.htm" title="11月23日→22.7M/S|2024年最新免费节点BifrosTV订阅链接地址">11月23日→22.7M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-25-node-share-links.htm" title="11月25日→21.8M/S|2024年最新免费节点BifrosTV订阅链接地址">11月25日→21.8M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-23719.htm" title="太原宠物领养中心地址（太原宠物救助站领养宠物）">太原宠物领养中心地址（太原宠物救助站领养宠物）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-8-free-high-speed-nodes.htm" title="9月8日→21.9M/S|2024年最新免费节点BifrosTV订阅链接地址">9月8日→21.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-18-free-high-speed-nodes.htm" title="11月18日→19M/S|2024年最新免费节点BifrosTV订阅链接地址">11月18日→19M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-23255.htm" title="领导小孩礼物送什么比较好呢(领导小孩礼物送什么比较好一点)">领导小孩礼物送什么比较好呢(领导小孩礼物送什么比较好一点)</a></li>
+                        <li class="py-2"><a href="/news/article-48253.htm" title="猫三联每针需要间隔多久打第二针（猫三联一针隔多久）">猫三联每针需要间隔多久打第二针（猫三联一针隔多久）</a></li>
+                        <li class="py-2"><a href="/news/article-37930.htm" title="动物疫苗打多了好不好（动物打疫苗后的不良反应）">动物疫苗打多了好不好（动物打疫苗后的不良反应）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-high-speed-nodes.htm" title="12月24日→22.9M/S|2024年最新免费节点BifrosTV订阅链接地址">12月24日→22.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22349.htm" title="演员王东的电视剧（王东演员）">演员王东的电视剧（王东演员）</a></li>
+                        <li class="py-2"><a href="/news/article-33595.htm" title="有限体积法求解一维非稳态对流扩散方程">有限体积法求解一维非稳态对流扩散方程</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-free-subscribe-node.htm" title="1月17日→22.8M/S|2025年最新免费节点BifrosTV订阅链接地址">1月17日→22.8M/S|2025年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-32641.htm" title="springboot 中注解@Async失效的情况">springboot 中注解@Async失效的情况</a></li>
+                        <li class="py-2"><a href="/news/article-26063.htm" title="【nodejs】【mongo】nodejs数据查询【mongo】">【nodejs】【mongo】nodejs数据查询【mongo】</a></li>
+                        <li class="py-2"><a href="/news/article-28367.htm" title="到底什么是消息队列">到底什么是消息队列</a></li>
                     </ul>
     </div>
 </div>
@@ -128,19 +157,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="no-js">
+<html xml:lang="zh-CN" lang="zh-CN" class="no-js">
 
 <head>
         <link rel="canonical" href="https://bifrostv.github.io/news/article-33108.htm" />
@@ -7,8 +7,37 @@
     <title>springboot全局时间格式化</title>
         <meta name="description" content="前言 这边一直用的返回参数加 @JsonFormat 注解的方式对日期进行格式化，但偶尔会出现忘记格式化（忘记添加注解的问题），遂在此添加全局配置，顺带做个笔记 方法1：项目配置 这种方式只对 Dat" />
         <link rel="icon" href="/assets/website/img/bifrostv/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="BifrosTV机场节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://bifrostv.github.io/news/article-33108.htm" />
+    <meta property="og:site_name" content="BifrosTV机场节点订阅官网" />
+    <meta property="og:title" content="springboot全局时间格式化" />
+    <meta property="og:image" content="https://bifrostv.github.io/uploads/20240907-1/8a1b18935dbe2e041725d62a2e843700.webp" />
+        <meta property="og:release_date" content="2024-12-30T09:01:42" />
+    <meta property="og:updated_time" content="2024-12-30T09:01:42" />
+        <meta property="og:description" content="前言 这边一直用的返回参数加 @JsonFormat 注解的方式对日期进行格式化，但偶尔会出现忘记格式化（忘记添加注解的问题），遂在此添加全局配置，顺带做个笔记 方法1：项目配置 这种方式只对 Dat" />
+        
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="springboot全局时间格式化">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
     <!-- GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
     <link href="/assets/website/js/frontend/bifrostv/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
@@ -107,16 +136,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-26983.htm" title="springboot：异步注解@Async的前世今生_在线工具">springboot：异步注解@Async的前世今生_在线工具</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-30-free-subscribe-node.htm" title="12月30日→19.6M/S|2024年最新免费节点BifrosTV订阅链接地址">12月30日→19.6M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-30-node-share-links.htm" title="10月30日→18.9M/S|2024年最新免费节点BifrosTV订阅链接地址">10月30日→18.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-16-node-share.htm" title="10月16日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址">10月16日→22.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share-links.htm" title="12月3日→22.4M/S|2024年最新免费节点BifrosTV订阅链接地址">12月3日→22.4M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-24189.htm" title="郑州宠物疫苗批发地址（郑州动物疫苗批发地址）">郑州宠物疫苗批发地址（郑州动物疫苗批发地址）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-high-speed-nodes.htm" title="12月12日→22.4M/S|2024年最新免费节点BifrosTV订阅链接地址">12月12日→22.4M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-23254.htm" title="成年猫要打几针（成年猫要打几针狂犬疫苗）">成年猫要打几针（成年猫要打几针狂犬疫苗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-24-free-subscribe-node.htm" title="11月24日→18.7M/S|2024年最新免费节点BifrosTV订阅链接地址">11月24日→18.7M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-1-free-node-subscribe.htm" title="1月1日→18.5M/S|2025年最新免费节点BifrosTV订阅链接地址">1月1日→18.5M/S|2025年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-38403.htm" title="宠物领养平台免费有哪些 宠物领养平台免费有哪些软件">宠物领养平台免费有哪些 宠物领养平台免费有哪些软件</a></li>
+                        <li class="py-2"><a href="/news/article-40393.htm" title="打疫苗能吃不（打疫苗的时候能不能吃）">打疫苗能吃不（打疫苗的时候能不能吃）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-free-node-subscribe.htm" title="11月7日→23M/S|2024年最新免费节点BifrosTV订阅链接地址">11月7日→23M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="11月10日→18.7M/S|2024年最新免费节点BifrosTV订阅链接地址">11月10日→18.7M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-node-share.htm" title="11月30日→19M/S|2024年最新免费节点BifrosTV订阅链接地址">11月30日→19M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-node-subscribe-links.htm" title="11月29日→19.5M/S|2024年最新免费节点BifrosTV订阅链接地址">11月29日→19.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-19139.htm" title="基于51单片机的秒表，单独按键控制启动，暂停，复位。">基于51单片机的秒表，单独按键控制启动，暂停，复位。</a></li>
+                        <li class="py-2"><a href="/news/article-21437.htm" title="HyBird App(混合应用)核心原理JSBridge">HyBird App(混合应用)核心原理JSBridge</a></li>
+                        <li class="py-2"><a href="/news/article-22347.htm" title="java笔记之class类定义和名称和屏幕打印（系统输出）">java笔记之class类定义和名称和屏幕打印（系统输出）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="12月4日→18.9M/S|2024年最新免费节点BifrosTV订阅链接地址">12月4日→18.9M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -128,19 +157,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
