@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN" class="no-js">
+
+<head>
+        <link rel="canonical" href="https://bifrostv.github.io/news/article-53491.htm" />
+    <meta charset="utf-8" />
+    <title>access update语句执行_用pymysql实现对多行数据的insert和update加速</title>
+        <meta name="description" content="本文对pymysql操作MySQL，insert和update的速度优化测试对比。对于insert操作来说，“一个事务处理多行的方式”比“一个事务处理一行的方式”插入相同的数据快了313倍，即插入20" />
+        <link rel="icon" href="/assets/website/img/bifrostv/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="BifrosTV机场节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://bifrostv.github.io/news/article-53491.htm" />
+    <meta property="og:site_name" content="BifrosTV机场节点订阅官网" />
+    <meta property="og:title" content="access update语句执行_用pymysql实现对多行数据的insert和update加速" />
+    <meta property="og:image" content="https://bifrostv.github.io/uploads/20240907-1/bd70cf01dc1f62a76b16741ec3232e9f.webp" />
+        <meta property="og:release_date" content="2025-02-09T10:03:37" />
+    <meta property="og:updated_time" content="2025-02-09T10:03:37" />
+        <meta property="og:description" content="本文对pymysql操作MySQL，insert和update的速度优化测试对比。对于insert操作来说，“一个事务处理多行的方式”比“一个事务处理一行的方式”插入相同的数据快了313倍，即插入20" />
+        
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="access update语句执行_用pymysql实现对多行数据的insert和update加速">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
+    <!-- GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <link href="/assets/website/js/frontend/bifrostv/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/website/js/frontend/bifrostv/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- PAGE LEVEL PLUGIN STYLES -->
+    <link href="/assets/website/css/bifrostv/animate.css" rel="stylesheet">
+    <!-- THEME STYLES -->
+    <link href="/assets/website/css/bifrostv/layout.min.css" rel="stylesheet" type="text/css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VEEJKF77CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VEEJKF77CS');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".header" data-page="detail">
+        <!--========== HEADER ==========-->
+    <header class="header navbar-fixed-top">
+        <!-- Navbar -->
+        <nav class="navbar" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="menu-container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="toggle-icon"></span>
+                    </button>
+                    <!-- Logo -->
+                    <div class="logo">
+                                                <a class="logo-wrap" href="/">
+                            <span>BifrosTV</span>
+                        </a>
+                                            </div>
+                    <!-- End Logo -->
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse nav-collapse">
+                    <div class="menu-container">
+                        <ul class="nav navbar-nav navbar-nav-right">
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/client.htm">客户端</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/news/">新闻资讯</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+                <!-- End Navbar Collapse -->
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--========== END HEADER ==========-->
+    <!--========== SLIDER ==========-->
+    <div class="promo-block parallax-window" data-parallax="scroll" data-image-src="/assets/website/img/bifrostv/1920x1080/01.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-block-divider">
+                        <h1 class="promo-block-title">access update语句执行_用pymysql实现对多行数据的insert和update加速</h1>
+                        <p class="promo-block-text">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </div>
+    <!--========== SLIDER ==========-->
+    <!--========== PAGE LAYOUT ==========-->
+    <!-- About -->
+    <div id="about">
+        <div class="container content-lg">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/03a32113307ed739253a304f95bfec95.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> </h1> <p>本文对pymysql操作MySQL，insert和update的速度优化测试对比。对于insert操作来说，“一个事务处理多行的方式”比“一个事务处理一行的方式”插入相同的数据快了313倍，即插入2000个记录，一个事务一行的方式需要30.99秒，优化方式仅需要0.099秒。MySQL原始语法是支持对insert语句一次插入多行记录，即insert into table_name values ，后面跟着多行值。</p> <p>但是对于update语句来说，MySQL并没有原始的语法支持一次update处理多行记录，update原始语句仅支持一次处理多个字段。本文将update语法和case when 语法结合起来，可以实现一个事务update更新多行记录，经测试这种方式比常规的方式快了283倍，即处理2000个记录，常规方式需要31.19秒，优化方式仅需要0.11秒。</p> </h1> <p>我们可以用Python封装一个MySQL连接的类，在类中实现对MySQL操作的类方法。</p> <p>例如，我们可以新建一个MySqlConnector的类，实现初始化类方法如下：</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/fcc91815f58e05c310f8e37490f1480f.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>这个方法中，首先从mysql_config.ini配置文件中，加载MySQL的配置数据，如host、port、user、pwd、db_name等；然后利用pymysql包的连接方法，创建一个MySQL的连接。</p> <p>然后，我们定义MySqlConnector类的查询方法：</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/31beb2be765a6c05deee95f18ac264cb.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>这个方法可以执行对mysql的查询操作。</p> <p>其次，我们再定义MySqlConnector类的update方法：</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/0c2a4d6f290bca1340e42bdfd8432ff8.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>这个update方法，可以执行对mysql的插入、更新、删除操作。</p> <p>最后，定义MySqlConnector类的close方法：</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/fcdef275b9bf22efe77e8d269431bdc8.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>对MySQL查询或者其他操作执行完毕之后，一定要执行该方法，关闭mysql的连接。因为单位时间里MySQL的连接数有最大的上限，当Mysql的连接数太多时，会造成MySQL的性能下，甚至会出现事务进程卡死的情况。</p> </h1> <p>我们先定义一个函数来计算某个函数的执行时间：</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/75dd584766b423053a8b9cc32ba227dc.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>我们网上任意找2000个文字，来做这个优化对比测试：</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/29c465133a18ce10993a39a4a4b0c74f.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>所以现在的任务是需要将这2000行的文本，插入mysql中。</p> <p><strong>1、我们先定义一种插入方式：一个事务插入一行数据的方式</strong></p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/17aab21a8e263f78b8ff7cb0e2c72970.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>执行看看需要多少时间：</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/9cd92d7ab5215fcb1872b15755e658e6.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>我们得到，一个事务插入一行的方式，将2000个文本全部插入，需要30.99秒。</p> <p><strong>2、我们定义另一种方式：一个事务插入多行记录值</strong></p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/0bf8468e72878c204c0aac8d44cf35af.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>看看这种方式的执行时间：</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/2091d024a343e148c4d90d8e1d6399c6.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>我们发现这种方式，插入2000行数据，仅需要0.099秒，比之前的方式，速度快了313倍。</p> </h1> <p>同样地，使用如上的2000行文本数据，现在需要根据 id 将mysql中的某个字段更新成这个2000行文本。</p> <p><strong>1、常规的方式是</strong></p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/68cf25f365f28a85f3b339175bdf5865.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>执行耗时：</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/3d1465ed0fa716f1271667ee3d1f8370.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>这种一个事务更新一行记录的方式，处理2000行数据，需要耗时31.19秒。</p> <p><strong>2、能不能写成一个事务更新多行的方式</strong></p> <p>虽然MySQL原生语法，没有一次update更新多行记录的语法。但是，我们可以结合case when 语法，很优雅的实现这个需求。</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/61210e28fe36b2761746564aec06819f.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>执行时间：</p> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221230/9a766def8d3468eff01ccfd8d3107810.jpg" alt="access update语句执行_用pymysql实现对多行数据的insert和update加速"> </div> <p>发现，采用这种方式，更新2000行文本的时间，仅需要0.11秒，比常规方式加速了283倍。</p> </h1> <p>对于MySQL的insert和update的操作，尽可能的使用一个事务处理多行记录值的方式，这样可以大大提升对MySQL的操作性能。另外需要注意的时，当使用一个事务处理多行记录值时，可能会出现如下的报错信息："Got a packet bigger than 'max_allowed_packet' bytes"。</p> <p>一个事务处理多行虽好，但是事务处理多行也是有最大上限的。当出现这个报错信息时，需要将数据分成几个batch，然后每个batch来使用一个事务处理多行的方式即可。</p> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-52952.htm">为MySQL创建高性能索引_Mysql_</a></p>
+                                        <p>下一个：<a href="/news/article-53492.htm">关于Mina中IoBuffer与Java NIO中ByteBufferde的使用</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-high-speed-nodes.htm" title="12月12日→22.4M/S|2024年最新免费节点BifrosTV订阅链接地址">12月12日→22.4M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-11-free-subscribe-node.htm" title="1月11日→18.1M/S|2025年最新免费节点BifrosTV订阅链接地址">1月11日→18.1M/S|2025年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-44349.htm" title="宠物领养合同内容 宠物领养合同内容包括">宠物领养合同内容 宠物领养合同内容包括</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-high-speed-nodes.htm" title="1月4日→22M/S|2025年最新免费节点BifrosTV订阅链接地址">1月4日→22M/S|2025年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-node-share.htm" title="11月26日→20.5M/S|2024年最新免费节点BifrosTV订阅链接地址">11月26日→20.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-high-speed-nodes.htm" title="11月11日→21.5M/S|2024年最新免费节点BifrosTV订阅链接地址">11月11日→21.5M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-51375.htm" title="面向对象编程-终结篇 es6新增语法">面向对象编程-终结篇 es6新增语法</a></li>
+                        <li class="py-2"><a href="/news/article-19140.htm" title="猫咪三针疫苗间隔时间（猫咪三针疫苗间隔多久）">猫咪三针疫苗间隔时间（猫咪三针疫苗间隔多久）</a></li>
+                        <li class="py-2"><a href="/news/article-49811.htm" title="床上快速找到跳蚤的方法（跳蚤咬的包什么样图片）">床上快速找到跳蚤的方法（跳蚤咬的包什么样图片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-node-share-links.htm" title="11月21日→21M/S|2024年最新免费节点BifrosTV订阅链接地址">11月21日→21M/S|2024年最新免费节点BifrosTV订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About -->
+    <!--========== END PAGE LAYOUT ==========-->
+        <!--========== FOOTER ==========-->
+    <footer class="footer">
+        <div class="content container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p class="margin-b-0">
+                        <a href="/">BifrosTV机场节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </footer>
+    <!--========== END FOOTER ==========-->
+    <!-- Back To Top -->
+    <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+    <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- CORE PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.easing.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.smooth-scroll.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.wow.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.parallax.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.appear.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS -->
+    <script src="/assets/website/js/frontend/bifrostv/layout.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/progress-bar.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/masonry.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/wow.min.js" type="text/javascript"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+
+</html>
