@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN" class="no-js">
+
+<head>
+        <link rel="canonical" href="https://bifrostv.github.io/news/article-100680.htm" />
+    <meta charset="utf-8" />
+    <title>linux执行rm -rf /*命令后的效果原来是这样</title>
+        <meta name="description" content="如果你接触过linux，肯定没少听过rm -rf的故事，这个恐怖的命令执行后到底会产生什么样的效果呢？接下来就带大家在虚拟机中演示一下。 注意：：：一定不能在生产环境中执行此命令，否则没有后悔药可买的" />
+        <link rel="icon" href="/assets/website/img/bifrostv/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="BifrosTV机场节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://bifrostv.github.io/news/article-100680.htm" />
+    <meta property="og:site_name" content="BifrosTV机场节点订阅官网" />
+    <meta property="og:title" content="linux执行rm -rf /*命令后的效果原来是这样" />
+    <meta property="og:image" content="https://bifrostv.github.io/uploads/20240907-1/3a33e53034a271dd79404d802a2a40d4.webp" />
+        <meta property="og:release_date" content="2025-04-21T06:50:13" />
+    <meta property="og:updated_time" content="2025-04-21T06:50:13" />
+        <meta property="og:description" content="如果你接触过linux，肯定没少听过rm -rf的故事，这个恐怖的命令执行后到底会产生什么样的效果呢？接下来就带大家在虚拟机中演示一下。 注意：：：一定不能在生产环境中执行此命令，否则没有后悔药可买的" />
+        
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="linux执行rm -rf /*命令后的效果原来是这样">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
+    <!-- GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <link href="/assets/website/js/frontend/bifrostv/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/website/js/frontend/bifrostv/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- PAGE LEVEL PLUGIN STYLES -->
+    <link href="/assets/website/css/bifrostv/animate.css" rel="stylesheet">
+    <!-- THEME STYLES -->
+    <link href="/assets/website/css/bifrostv/layout.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VEEJKF77CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VEEJKF77CS');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".header" data-page="detail">
+        <!--========== HEADER ==========-->
+    <header class="header navbar-fixed-top">
+        <!-- Navbar -->
+        <nav class="navbar" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="menu-container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="toggle-icon"></span>
+                    </button>
+                    <!-- Logo -->
+                    <div class="logo">
+                                                <a class="logo-wrap" href="/">
+                            <span>BifrosTV</span>
+                        </a>
+                                            </div>
+                    <!-- End Logo -->
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse nav-collapse">
+                    <div class="menu-container">
+                        <ul class="nav navbar-nav navbar-nav-right">
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/">首页</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/free-nodes/">免费节点</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/paid-subscribe/">推荐机场</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/client.htm">客户端</a></li>
+                                                        <li class="nav-item"><a class="nav-item-child nav-item-hover" href="/news/">新闻资讯</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+                <!-- End Navbar Collapse -->
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--========== END HEADER ==========-->
+    <!--========== SLIDER ==========-->
+    <div class="promo-block parallax-window" data-parallax="scroll" data-image-src="/assets/website/img/bifrostv/1920x1080/01.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-block-divider">
+                        <h1 class="promo-block-title">linux执行rm -rf /*命令后的效果原来是这样</h1>
+                        <p class="promo-block-text">
+                            <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </div>
+    <!--========== SLIDER ==========-->
+    <!--========== PAGE LAYOUT ==========-->
+    <!-- About -->
+    <div id="about">
+        <div class="container content-lg">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                <div class="xcblog-blog-detail">
+                      				  				  				<div id="content_views" class="htmledit_views"> <p>如果你接触过linux，肯定没少听过rm -rf的故事，这个恐怖的命令执行后到底会产生什么样的效果呢？接下来就带大家在虚拟机中演示一下。</p> <p>注意：：：一定不能在生产环境中执行此命令，否则没有后悔药可买的！</p> <p>【演示环境】</p> <p>虚拟机：vmware</p> <p>系统：centos</p> <p>用户：root</p> <p>1、执行删除命令前，系统运行良好，且操作正常，如下图所示：</p> <p>&nbsp;</p> <p><img decoding="async" alt="linux free df" class="has" src="http://img.555519.xyz/uploads/20230206/c4078bca37d6540a8bc5b335e3edb81f.jpg"></p> <p>&nbsp;</p> <p>2、执行“rm -rf /*”命令，期间会报如下图所示的错误。容易看出，并不是所有的文件都能被删除，有些系统保护的文件删除会报错。</p> <p>&nbsp;</p> <p><img decoding="async" alt="删除后命令报错" class="has" src="http://img.555519.xyz/uploads/20230206/f6896cce4cdcb18791bb40ba1b95ab60.jpg"></p> <p>&nbsp;</p> <p>3、删除完毕后，我们试着执行了几个命令，如top、free、ls、shutdown等都已经无法执行了，只有cd可以。由此可见执行rm -rf /*命令的影响程度有多大。</p> <p>&nbsp;</p> <p><img decoding="async" alt="rm -rf报权限错误" class="has" src="http://img.555519.xyz/uploads/20230206/f347aaadc3d7202628f6c13cf00a59b5.jpg"></p> <p>&nbsp;</p> <p>4、强制关机后，重新启动系统，如下图所示已经报异常了，无法正常进入系统，此时只有进行重装系统了。</p> <p>&nbsp;</p> <p><img decoding="async" alt="linux启动异常" class="has" src="http://img.555519.xyz/uploads/20230206/568ed48007b294bcd85a006d601c65e5.jpg"></p> <p>&nbsp;</p> <p><strong>总结：</strong></p> <p>有点遗憾删除结束后没法再使用df、ls这些命令，所以没办法看出还剩哪些文件。不过从上面的结果来看，连基础命令都执行不了，所以用户数据（如安装的软件、部署的网站、数据库等）肯定也都全删没了。</p> <p>&nbsp;</p> <p>因此平时操作的过程中要养成良好的习惯，尽量不要用rm命令，可以用mv命令来代替。比如要删掉a.txt，可以执行mv a.txt /mytemp ，然后再写个脚本定时清除/mytemp目录下的文件，这样会安全很多。</p> <p>&nbsp;</p> <p>文章出自：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.daixiaorui.com/read/265.html"  rel="nofollow">https://www.daixiaorui.com/read/265.html</a>&nbsp;本站所有文章，除注明出处外皆为原创，转载请注明本文地址，版权所有。</p> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-99944.htm">学宠物医生上什么专科学校好（学宠物医生有前景吗?）</a></p>
+                                        <p>下一个：<a href="/news/article-100681.htm">动物打疫苗在哪***的（动物打疫苗在哪***的呢）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-74072.htm" title="2021年的国考公务员报名时间在什么时候考（2021国考公务员啥时候报名）">2021年的国考公务员报名时间在什么时候考（2021国考公务员啥时候报名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-2-free-high-speed-nodes.htm" title="4月2日→21.4M/S|2025年最新免费节点BifrosTV订阅链接地址">4月2日→21.4M/S|2025年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-97702.htm" title="MySQL的聚合函数是否忽略NULL">MySQL的聚合函数是否忽略NULL</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-node-share-links.htm" title="3月8日→19.6M/S|2025年最新免费节点BifrosTV订阅链接地址">3月8日→19.6M/S|2025年最新免费节点BifrosTV订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-68824.htm" title="动物防疫疫苗与接种的区别在于哪里（动物防疫疫苗与接种的区别在于哪里呢）">动物防疫疫苗与接种的区别在于哪里（动物防疫疫苗与接种的区别在于哪里呢）</a></li>
+                        <li class="py-2"><a href="/news/article-65663.htm" title="广州哪里有宠物粮食批发市场啊多少钱（广州哪里有宠物粮食批发市场啊多少钱一个）">广州哪里有宠物粮食批发市场啊多少钱（广州哪里有宠物粮食批发市场啊多少钱一个）</a></li>
+                        <li class="py-2"><a href="/news/article-83713.htm" title="南京宠物寄养一般怎么收费呢多少钱（南京宠物寄养价目表）">南京宠物寄养一般怎么收费呢多少钱（南京宠物寄养价目表）</a></li>
+                        <li class="py-2"><a href="/news/article-80911.htm" title="重庆宠物领养平台官网地址电话查询（重庆宠物领养中心官网）">重庆宠物领养平台官网地址电话查询（重庆宠物领养中心官网）</a></li>
+                        <li class="py-2"><a href="/news/article-91316.htm" title="动物医院贵吗多少钱一个小时（动物医院诊疗范围）">动物医院贵吗多少钱一个小时（动物医院诊疗范围）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-node-share.htm" title="3月15日→21.5M/S|2025年最新免费节点BifrosTV订阅链接地址">3月15日→21.5M/S|2025年最新免费节点BifrosTV订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About -->
+    <!--========== END PAGE LAYOUT ==========-->
+        <!--========== FOOTER ==========-->
+    <footer class="footer">
+        <div class="content container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <p class="margin-b-0">
+                        <a href="/">BifrosTV机场节点订阅官网</a> 版权所有
+                        <br />
+                        Powered by WordPress
+                    </p>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </footer>
+    <!--========== END FOOTER ==========-->
+    <!-- Back To Top -->
+    <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+    <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- CORE PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL PLUGINS -->
+    <script src="/assets/website/js/frontend/bifrostv/jquery.easing.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.smooth-scroll.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.wow.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.parallax.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/jquery.appear.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS -->
+    <script src="/assets/website/js/frontend/bifrostv/layout.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/progress-bar.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/masonry.min.js" type="text/javascript"></script>
+    <script src="/assets/website/js/frontend/bifrostv/components/wow.min.js" type="text/javascript"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+
+</html>
